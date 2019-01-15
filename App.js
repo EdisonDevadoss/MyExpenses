@@ -1,10 +1,7 @@
-import React from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
-import Boot from "./src/boot";
+import React from 'react';
+import Boot from './src/boot';
 
 const App = () => {
-  return (
-    <Boot />
-  );
+  return <Boot />;
 };
 export default App;
