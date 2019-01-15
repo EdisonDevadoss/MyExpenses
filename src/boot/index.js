@@ -1,2 +1,2 @@
-import Boot from "./boot";
+import Boot from './boot';
 export default Boot;

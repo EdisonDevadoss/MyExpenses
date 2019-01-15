@@ -1,6 +1,6 @@
-import React from "react";
-import AppNavigator from "./AppNavigator";
-import { Root, StyleProvider } from "native-base";
+import React from 'react';
+import AppNavigator from './AppNavigator';
+import { Root } from 'native-base';
 
 const Boot = () => {
   return (
