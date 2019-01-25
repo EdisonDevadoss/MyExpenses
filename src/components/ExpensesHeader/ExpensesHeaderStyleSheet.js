@@ -7,21 +7,19 @@ import {
 
 const styles = StyleSheet.create({
   ...AppStyles.screen,
-  loginIconStyle: {
-    fontSize: wp('8%'),
+  logoImg: {
+    marginTop: wp('3%'),
+    height: wp('40%'),
+    width: wp('50%')
+  },
+  headerTextStyle: {
+    fontSize: wp('5%'),
+    flex: 5,
     color: '#FFFFFF'
   },
-
-  navIconRowOne: {
-    marginTop: hp('8%'),
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  navIconRowTwo: {
-    marginTop: hp('11%'),
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+  loginIconStyle: {
+    fontSize: wp('12%'),
+    color: '#FFFFFF'
   }
 });
-
 export default styles;

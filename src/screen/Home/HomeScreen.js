@@ -1,7 +1,17 @@
 import React from 'react';
 //import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Container, Content } from 'native-base';
 import { connect } from 'react-redux';
+import LinearGradient from 'react-native-linear-gradient';
+import NavImage from '../../components/NavImage';
+import ExpensesHeader from '../../components/ExpensesHeader';
+import styles from './HomeScreenStyleSheet';
+import { defaultColors } from '../../config';
+
+const acquireDataImg = require('../../images/add.png');
+const historyImg = require('../../images/history.png');
+const configImg = require('../../images/edit.png');
+const exitImg = require('../../images/exit.png');
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -12,9 +22,24 @@ class HomeScreen extends React.Component {
     const { phoneNoSignin } = this.props;
     console.log('phoneNoSignin is', phoneNoSignin);
     return (
-      <View>
-        <Text>Home screen</Text>
-      </View>
+      <Container>
+        <LinearGradient
+          colors={defaultColors.grandientColors}
+          style={styles.linearGradient}
+        >
+          <ExpensesHeader />
+          <Content style={styles.contentContainer}>
+            <View style={styles.navIconRowOne}>
+              <NavImage image={acquireDataImg} navName="Add" />
+              <NavImage image={historyImg} navName="View" />
+            </View>
+            <View style={styles.navIconRowTwo}>
+              <NavImage image={configImg} navName="Edit" />
+              <NavImage image={exitImg} onPress={this.exit} navName="Exit" />
+            </View>
+          </Content>
+        </LinearGradient>
+      </Container>
     );
   }
 }
