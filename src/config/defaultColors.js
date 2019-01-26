@@ -11,7 +11,8 @@ const defaultColors = {
   gradientButtonColors: ['#FE766E', '#FE9B6E', '#FEB171'],
   batteryLowColor: '#B71C1C',
   batteryMiddleColor: '#FCF644',
-  batteryFullColor: '#57BF34'
+  batteryFullColor: '#57BF34',
+  light: '#FFFFFF'
 };
 
 export default defaultColors;
