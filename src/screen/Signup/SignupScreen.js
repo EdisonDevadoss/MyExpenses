@@ -2,12 +2,15 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 import { View, Container, Text } from 'native-base';
 import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
 import LinearGradient from 'react-native-linear-gradient';
 import ExpensesHeader from '../../components/ExpensesHeader';
 import InputBox from '../../components/InputBox';
+import renderInputBox from '../../components/RenderInputBox';
 import styles from './SignupScreenStyleSheet';
 import { defaultColors } from '../../config';
 import GradientButton from '../../components/GradientButton';
+import { required, email, password, reEnterPassword } from '../../lib/validate';
 
 class SignupScreen extends React.Component {
   constructor(props) {
@@ -15,8 +18,8 @@ class SignupScreen extends React.Component {
     this.state = {};
   }
   render() {
-    const { phoneNoSignin, navigation } = this.props;
-    console.log('phoneNoSignin is', phoneNoSignin);
+    const { start, navigation } = this.props;
+    console.log('success is', start);
     return (
       <Container>
         <LinearGradient
@@ -30,21 +33,29 @@ class SignupScreen extends React.Component {
           />
           <Text style={styles.headerText}>Sign up</Text>
           <View style={[styles.formStyle, styles.contentContainer]}>
-            <InputBox
+            <Field
+              name={'email'}
               iconName="mail"
               iconType="Entypo"
               placeholder="Enter your email address"
               keyboardType={'email-address'}
+              component={renderInputBox}
+              validate={email}
             />
-            <InputBox
+
+            <Field
+              name={'password'}
               iconName="lock"
               iconType="EvilIcons"
               placeholder="Enter your password"
               secureTextEntry={true}
+              component={renderInputBox}
+              validate={password}
             />
             <GradientButton buttonName="Sigup" />
             <Text
               style={styles.info}
+              disabled={start}
               onPress={() => navigation.navigate('Signup')}
             >
               If you already have account ? Please sign in
@@ -56,7 +67,10 @@ class SignupScreen extends React.Component {
   }
 }
 const mapStateToProps = (state) => ({
-  phoneNoSignin: state.phoneNoSignin
+  start: state.Signup.start
 });
+const Signup = reduxForm({
+  form: 'signup'
+})(SignupScreen);
 
-export default connect(mapStateToProps)(SignupScreen);
+export default connect(mapStateToProps)(Signup);
