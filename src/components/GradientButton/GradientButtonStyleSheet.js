@@ -7,16 +7,20 @@ import {
 
 const styles = StyleSheet.create({
   ...AppStyles.screen,
-  navIconRowOne: {
-    marginTop: hp('8%'),
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+  linearGradient: {
+    flex: 1
   },
-  navIconRowTwo: {
-    marginTop: hp('11%'),
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+  linearGradientButtons: {
+    borderColor: 'white',
+    borderWidth: wp('0.5%'),
+    height: hp('6.3%'),
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  textButtons: {
+    color: 'white',
+    fontSize: wp('6%'),
+    textAlign: 'center'
   }
 });
-
 export default styles;

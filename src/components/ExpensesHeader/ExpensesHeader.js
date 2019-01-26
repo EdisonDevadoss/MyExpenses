@@ -21,8 +21,8 @@ const ExpensesHeader = (props) => {
       <Right style={styles.rightHeader}>
         <TouchableOpacity onPress={props.userActivity}>
           <Icon
-            name={'user-following'}
-            type={'SimpleLineIcons'}
+            name={props.iconName}
+            type={props.iconType}
             style={styles.loginIconStyle}
           />
         </TouchableOpacity>
@@ -31,7 +31,9 @@ const ExpensesHeader = (props) => {
   );
 };
 ExpensesHeader.propTypes = {
-  userActivity: PropTypes.func
+  userActivity: PropTypes.func,
+  iconName: PropTypes.string,
+  iconType: PropTypes.string
 };
 
 export default ExpensesHeader;

@@ -19,15 +19,18 @@ class HomeScreen extends React.Component {
     this.state = {};
   }
   render() {
-    const { phoneNoSignin } = this.props;
-    console.log('phoneNoSignin is', phoneNoSignin);
+    const { navigation } = this.props;
     return (
       <Container>
         <LinearGradient
           colors={defaultColors.grandientColors}
           style={styles.linearGradient}
         >
-          <ExpensesHeader />
+          <ExpensesHeader
+            iconName={'user-following'}
+            iconType={'SimpleLineIcons'}
+            userActivity={() => navigation.navigate('Signin')}
+          />
           <Content style={styles.contentContainer}>
             <View style={styles.navIconRowOne}>
               <NavImage image={acquireDataImg} navName="Add" />
