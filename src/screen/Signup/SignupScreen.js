@@ -1,25 +1,50 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
-import { View, Container, Text } from 'native-base';
+import PropTypes from 'prop-types';
+import { View, Container, Text, Toast } from 'native-base';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import LinearGradient from 'react-native-linear-gradient';
 import ExpensesHeader from '../../components/ExpensesHeader';
-import InputBox from '../../components/InputBox';
 import renderInputBox from '../../components/RenderInputBox';
 import styles from './SignupScreenStyleSheet';
 import { defaultColors } from '../../config';
 import GradientButton from '../../components/GradientButton';
-import { required, email, password, reEnterPassword } from '../../lib/validate';
+import { signup } from '../../redux/actions/Authentication';
+import { email, password, reEnterPassword } from '../../lib/validate';
 
 class SignupScreen extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.object,
+    dispatch: PropTypes.func,
+    handleSubmit: PropTypes.func,
+    start: PropTypes.bool
+  };
   constructor(props) {
     super(props);
     this.state = {};
   }
+  onSignup = (values) => {
+    const { email, password } = values;
+    this.props.dispatch(signup(email, password)).then(
+      () => {
+        Toast.show({
+          text: 'Signup successfully',
+          type: 'success',
+          position: 'bottom'
+        });
+        this.props.navigation.navigate('Home');
+      },
+      () => {
+        Toast.show({
+          text: 'Signup failed',
+          type: 'danger',
+          position: 'bottom'
+        });
+      }
+    );
+  };
   render() {
-    const { start, navigation } = this.props;
-    console.log('success is', start);
+    const { start, navigation, handleSubmit } = this.props;
     return (
       <Container>
         <LinearGradient
@@ -52,7 +77,19 @@ class SignupScreen extends React.Component {
               component={renderInputBox}
               validate={password}
             />
-            <GradientButton buttonName="Sigup" />
+            <Field
+              name={'reEnterPassword'}
+              iconName="lock"
+              iconType="EvilIcons"
+              placeholder="Re-Enter your password"
+              secureTextEntry={true}
+              component={renderInputBox}
+              validate={reEnterPassword}
+            />
+            <GradientButton
+              buttonName="Signup"
+              onPress={handleSubmit(this.onSignup)}
+            />
             <Text
               style={styles.info}
               disabled={start}
