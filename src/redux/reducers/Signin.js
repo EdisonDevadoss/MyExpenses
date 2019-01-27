@@ -5,20 +5,20 @@ const INITIAL_STATE = {
 };
 
 import {
-  SIGNUP_START,
-  SIGNUP_SUCCESS,
-  SIGNUP_ERROR
+  SIGNIN_START,
+  SIGNIN_SUCCESS,
+  SIGNIN_ERROR
 } from '../actionTypes/Auth';
 
-function PhoneNoSigninReducer(state = INITIAL_STATE, action) {
+function SigninReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case SIGNUP_START: {
+    case SIGNIN_START: {
       return { ...state, start: true, error: '' };
     }
-    case SIGNUP_SUCCESS: {
+    case SIGNIN_SUCCESS: {
       return { ...state, success: true };
     }
-    case SIGNUP_ERROR: {
+    case SIGNIN_ERROR: {
       return { ...state, start: false, error: true };
     }
     default: {
@@ -26,4 +26,4 @@ function PhoneNoSigninReducer(state = INITIAL_STATE, action) {
     }
   }
 }
-export default PhoneNoSigninReducer;
+export default SigninReducer;
