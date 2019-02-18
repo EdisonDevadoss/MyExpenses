@@ -1,6 +1,7 @@
 import React from 'react';
 import AppNavigator from './AppNavigator';
 import { Root } from 'native-base';
+import withAuthentication from '../hoc/withAuthentication';
 
 const Boot = () => {
   return (
@@ -9,4 +10,4 @@ const Boot = () => {
     </Root>
   );
 };
-export default Boot;
+export default withAuthentication(Boot);
