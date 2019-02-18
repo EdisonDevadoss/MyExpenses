@@ -12,6 +12,7 @@ import renderPickerBox from '../../components/RenderPickerBox';
 import styles from './AddExpensesScreenStyleSheet';
 import { defaultColors, constant } from '../../config';
 import { date, particulars, amount, required } from '../../lib/validate';
+import { addNewExpenses } from '../../redux/actions/ExpensesOperation';
 
 class AddExpensesScreen extends React.Component {
   static propTypes = {
@@ -25,10 +26,19 @@ class AddExpensesScreen extends React.Component {
   }
   onAddExpenses = (values) => {
     console.log('values', values);
+    const { authUser } = this.props;
+    this.props.dispatch(addNewExpenses(authUser.uid, values)).then(
+      () => {
+        console.log('Sucess');
+      },
+      () => {
+        console.log('Error');
+      }
+    );
   };
   render() {
-    const { start, navigation, handleSubmit } = this.props;
-
+    const { authUser, navigation, handleSubmit } = this.props;
+    console.log('authUser is', authUser);
     return (
       <Container>
         <LinearGradient
@@ -88,7 +98,8 @@ class AddExpensesScreen extends React.Component {
   }
 }
 const mapStateToProps = (state) => ({
-  phoneNoSignin: state.phoneNoSignin
+  AddNewExpenses: state.AddNewExpenses,
+  authUser: state.session.authUser
 });
 const AddExpenses = reduxForm({
   form: 'addExpenses'
