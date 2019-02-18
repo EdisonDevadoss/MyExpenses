@@ -1,3 +1,4 @@
 import AppStyles from './ApppStyles';
 import defaultColors from './defaultColors';
-export { AppStyles, defaultColors };
+import constant from './constant';
+export { AppStyles, defaultColors, constant };

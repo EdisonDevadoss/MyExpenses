@@ -12,3 +12,8 @@ export const password = (value) =>
 
 export const reEnterPassword = (value) =>
   value ? undefined : 'Please re-enter your password';
+
+export const date = (value) => (value ? undefined : 'Please enter date');
+export const amount = (value) => (value ? undefined : 'Please enter amount');
+export const particulars = (value) =>
+  value ? undefined : 'Please enter particulars';
